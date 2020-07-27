@@ -1,5 +1,7 @@
 import 'dart:ui';
+import 'package:cookbook/meals/app_routes.dart';
 
+import 'screens/category_meals_screen.dart';
 import 'package:cookbook/screens/categories_screen.dart';
 import 'package:flutter/material.dart';
  
@@ -22,7 +24,11 @@ class MyApp extends StatelessWidget {
           ),
         )
       ),
-      home: CategoriesScreen(),
+
+      routes: {
+        AppRoutes.HOME: (ctx) => CategoriesScreen(),
+        AppRoutes.CATEGORIES_MEALS: (ctx) => CategoriesMealsScreen(),
+      },
     );
   }
 }
