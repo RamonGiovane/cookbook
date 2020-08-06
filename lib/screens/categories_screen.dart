@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class CategoriesScreen extends StatelessWidget {
+  static const String screenName = 'Lista de Categorias';
+
   @override
   Widget build(BuildContext context) {
     return GridView(

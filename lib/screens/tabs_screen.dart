@@ -1,34 +1,56 @@
+import 'package:cookbook/screens/categories_screen.dart';
+import 'package:cookbook/screens/favorites_screen.dart';
 import 'package:flutter/material.dart';
-import 'categories_screen.dart';
-import 'favorites_screen.dart';
 
-class TabsScreen extends StatelessWidget {
+class TabsScreen extends StatefulWidget {
+  @override
+  _TabsScreenState createState() => _TabsScreenState();
+}
+
+class _TabsScreenState extends State<TabsScreen> {
+  int _selectedScreenIndex = 0;
+
+  final List<Map<String, Object>> _screens = [
+    {'title': CategoriesScreen.screenName, 'screen': CategoriesScreen()},
+    {'title': FavoritesScreen.screenName, 'screen': FavoritesScreen()},
+  ];
+
+  _selectScreen(int index) {
+    setState(() {
+      _selectedScreenIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    return DefaultTabController(
-      length: 2,
-      child: Scaffold(
-        appBar: AppBar(
-          title: Text("Vamos Cozinhar?"),
-          bottom: TabBar(
-            tabs: <Widget>[
-              Tab(
-                icon: Icon(Icons.category),
-                text: 'Categorias',
-              ),
-              Tab(
-                icon: Icon(Icons.star),
-                text: 'Favoritos',
-              ),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        title:
+            Text((_screens[_selectedScreenIndex]['title'])), //yeah, this sucks
+      ),
+
+      //O corpo do Scaffold será a tela selecionada
+      body: _screens[_selectedScreenIndex]['screen'],
+
+      bottomNavigationBar: BottomNavigationBar(
+        /*Ao clicar numa aba, a função _selectScreen é chamada passando o indice 
+        * da tela. Na função _selectScreen o indice é alterado no estado 
+        * do Widget.*/
+        onTap: _selectScreen,
+        currentIndex: _selectedScreenIndex,
+        backgroundColor: Theme.of(context).primaryColor,
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Theme.of(context).accentColor,
+        items: <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.category),
+            title: Text('Categorias'),
           ),
-        ),
-        body: TabBarView(
-          children: <Widget>[
-            CategoriesScreen(),
-            FavoritesScreen(),
-          ],
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.star),
+            title: Text('Favoritos'),
+          ),
+        ],
       ),
     );
   }
