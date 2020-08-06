@@ -6,11 +6,7 @@ import 'package:flutter/material.dart';
 class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Vamos Cozinhar?'),
-      ),
-      body: GridView(
+    return GridView(
         //add espaço entre as categorias
         padding: const EdgeInsets.all(25),
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -21,7 +17,6 @@ class CategoriesScreen extends StatelessWidget {
         ),
         children: DUMMY_CATEGORIES.map((e) => 
         CategoryItem(e)).toList(),
-      ),
     );
   }
 }

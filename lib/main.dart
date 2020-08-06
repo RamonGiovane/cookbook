@@ -1,8 +1,8 @@
 import 'dart:ui';
 import 'package:cookbook/meals/app_routes.dart';
-
+import 'package:cookbook/screens/meal_detail_screen.dart';
+import 'package:cookbook/screens/tabs_screen.dart';
 import 'screens/category_meals_screen.dart';
-import 'package:cookbook/screens/categories_screen.dart';
 import 'package:flutter/material.dart';
  
 void main() => runApp(MyApp());
@@ -26,8 +26,9 @@ class MyApp extends StatelessWidget {
       ),
 
       routes: {
-        AppRoutes.HOME: (ctx) => CategoriesScreen(),
+        AppRoutes.HOME: (ctx) => TabsScreen(),
         AppRoutes.CATEGORIES_MEALS: (ctx) => CategoriesMealsScreen(),
+        AppRoutes.MEAL_DETAIL: (ctx) => MealDetailScreen(),
       },
     );
   }
