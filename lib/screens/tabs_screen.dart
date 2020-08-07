@@ -1,3 +1,4 @@
+import 'package:cookbook/components/main_drawer.dart';
 import 'package:cookbook/screens/categories_screen.dart';
 import 'package:cookbook/screens/favorites_screen.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,8 @@ class _TabsScreenState extends State<TabsScreen> {
         title:
             Text((_screens[_selectedScreenIndex]['title'])), //yeah, this sucks
       ),
+
+      drawer: MainDrawer(),
 
       //O corpo do Scaffold será a tela selecionada
       body: _screens[_selectedScreenIndex]['screen'],

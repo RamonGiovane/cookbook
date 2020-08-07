@@ -7,11 +7,14 @@ class MealItem extends StatelessWidget {
 
   MealItem(this.meal);
 
-  void _selectMeal(BuildContext context) {
-    Navigator.of(context).pushNamed(
+  void _selectMeal(BuildContext context) async{
+   Object a  = await Future.microtask(() => 
+   Navigator.of(context).pushNamed(
       AppRoutes.MEAL_DETAIL,
       arguments: meal,
-    );
+    ));
+
+    print(a);
   }
 
   @override
