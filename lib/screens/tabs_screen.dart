@@ -1,9 +1,14 @@
 import 'package:cookbook/components/main_drawer.dart';
+import 'package:cookbook/models/meal.dart';
 import 'package:cookbook/screens/categories_screen.dart';
 import 'package:cookbook/screens/favorites_screen.dart';
 import 'package:flutter/material.dart';
 
 class TabsScreen extends StatefulWidget {
+  final List<Meal> favoriteMeals;
+
+  const TabsScreen(this.favoriteMeals);
+
   @override
   _TabsScreenState createState() => _TabsScreenState();
 }
@@ -11,16 +16,26 @@ class TabsScreen extends StatefulWidget {
 class _TabsScreenState extends State<TabsScreen> {
   int _selectedScreenIndex = 0;
 
-  final List<Map<String, Object>> _screens = [
-    {'title': CategoriesScreen.screenName, 'screen': CategoriesScreen()},
-    {'title': FavoritesScreen.screenName, 'screen': FavoritesScreen()},
-  ];
+  List<Map<String, Object>> _screens;
 
-  _selectScreen(int index) {
+  @override
+  void initState() {
+    super.initState();
+    _screens = [
+      {'title': CategoriesScreen.screenName, 'screen': CategoriesScreen()},
+      {
+        'title': FavoritesScreen.screenName,
+        'screen': FavoritesScreen(widget.favoriteMeals)
+      },
+    ];
+  }
+
+  void _selectScreen(int index) {
     setState(() {
       _selectedScreenIndex = index;
     });
   }
+
 
   @override
   Widget build(BuildContext context) {
